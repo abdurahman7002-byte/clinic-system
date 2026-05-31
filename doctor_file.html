@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Doctor File</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+    .dash-card{
+    background: linear-gradient(135deg,#1e293b,#0f172a);
+    padding:15px;
+    border-radius:14px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.3s;
+}
+
+.dash-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.4);
+}
+
+.dash-card div{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.dash-card h3{
+    color:#4cc9f0;
+    margin-top:8px;
+    font-size:20px;
+}
+
+/* =========================
+   GLOBAL STYLE
+========================= */
+
+body{
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color:white;
+    font-family:Arial;
+    padding:20px;
+}
+
+/* =========================
+   HEADER TITLE
+========================= */
+
+.page-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:25px;
+    color:#38bdf8;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    background:rgba(30,41,59,0.9);
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    margin-bottom:10px;
+    background:#0f172a;
+    color:white;
+    outline:none;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+input:focus{
+    border:1px solid #38bdf8;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border:none;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#06b6d4,#3b82f6);
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:700;
+    width:100%;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:700;
+    width:100%;
+    margin-top:10px;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+}
+
+/* =========================
+   WORK CARD
+========================= */
+
+.work-card{
+    background:#0f172a;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:12px;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.3s;
+}
+
+.work-card:hover{
+    transform:scale(1.01);
+    border-color:#38bdf8;
+}
+
+/* =========================
+   DETAILS EDIT SECTION
+========================= */
+
+details{
+    background:#0f172a;
+    padding:10px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+summary{
+    cursor:pointer;
+    font-weight:700;
+    color:#38bdf8;
+    padding:5px;
+}
+
+/* =========================
+   GRID LAYOUT
+========================= */
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =========================
+     TITLE
+========================= -->
+
+<div class="page-title">
+    DOCTOR FILE
+</div>
+
+<div style="margin-bottom:20px;">
+    <button onclick="goToDoctors()" class="primary-btn"
+    style="
+        background:linear-gradient(135deg,#4cc9f0,#0ea5e9);
+        padding:12px 16px;
+        font-weight:700;
+    ">
+        ← Doctors List
+    </button>
+</div>
+
+
+
+<button onclick="goToDashboard()" class="primary-btn"
+style="
+    margin-bottom:15px;
+    background:linear-gradient(135deg,#00b09b,#96c93d);
+">
+    ← Back to Dashboard
+</button>
+
+<!-- =========================
+     DOCTOR INFO
+========================= -->
+
+<div class="card">
+
+<h2><i class="fa-solid fa-user-doctor"></i> Doctor Info</h2>
+
+<div id="doctorInfo"></div>
+
+</div>
+
+<!-- =========================
+DOCTOR DASHBOARD
+========================= -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-chart-line"></i>
+Doctor Dashboard
+</h2>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+    <div class="dash-card">
+        <div>Works</div>
+        <h3 id="totalWorks">0</h3>
+    </div>
+
+    <div class="dash-card">
+        <div>Total Cost</div>
+        <h3 id="totalCost">0 EGP</h3>
+    </div>
+
+    <div class="dash-card">
+        <div>Doctor Profit</div>
+        <h3 id="totalProfit">0 EGP</h3>
+    </div>
+
+</div>
+
+</div>
+
+<!-- =========================
+     ADD WORK
+========================= -->
+
+<div class="card">
+
+<h2><i class="fa-solid fa-plus"></i> Add Work</h2>
+
+<input id="work_name" placeholder="اسم الاجراء">
+
+<input id="patient_name" placeholder="Patient Name">
+
+<input id="work_cost" type="number" placeholder="تكلفة الاجراء">
+
+<input id="doctor_percent" type="number" placeholder="نسبة الطبيب">
+
+<button class="primary-btn" onclick="saveWork()">
+    Save 
+</button>
+
+</div>
+
+<!-- =========================
+     WORKS LIST
+========================= -->
+
+<div class="card">
+
+   
+
+<h2><i class="fa-solid fa-list"></i> Doctor Works</h2>
+
+<div id="worksContainer"></div>
+
+ <button class="delete-btn"
+style="
+    margin-bottom:15px;
+    background:#dc2626;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+"
+onclick="deleteAllWorks()">
+
+🗑 Delete All Works (تصفية الحساب يالكامل)
+</button>
+
+</div>
+
+<!-- =========================
+     EDIT DOCTOR
+========================= -->
+
+<div class="card">
+
+<h2><i class="fa-solid fa-pen"></i> Edit Doctor</h2>
+
+<details>
+
+<summary>Click to Edit Doctor Info</summary>
+
+<br>
+
+<input id="doctor_name" placeholder="Doctor Name">
+<input id="specialization" placeholder="Specialization">
+<input id="age" type="number" placeholder="Age">
+<input id="phone" placeholder="Phone">
+<input id="address" placeholder="Address">
+
+<button class="primary-btn" onclick="saveDoctorEdit()">
+    Update Doctor
+</button>
+
+<button class="delete-btn" onclick="deleteDoctor()">
+    Delete Doctor
+</button>
+
+</details>
+
+</div>
+
+</div>
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/doctor_file.js"></script>
+
+</body>
+
+</html>

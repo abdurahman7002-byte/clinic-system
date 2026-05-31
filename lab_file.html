@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lab File</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+body{
+    margin:0;
+    padding:24px;
+    font-family:Segoe UI;
+    background:linear-gradient(135deg,#0f172a,#111827);
+    color:#fff;
+}
+
+/* HEADER */
+h2{
+    margin-bottom:20px;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#60a5fa;
+}
+
+/* CARDS */
+.card{
+    background:rgba(30,41,59,0.7);
+    backdrop-filter: blur(10px);
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:20px;
+    border:1px solid rgba(255,255,255,0.05);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* INPUTS */
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    background:#1f2937;
+    color:white;
+    transition:0.3s;
+}
+
+input:focus,textarea:focus{
+    background:#111827;
+    border:1px solid #3b82f6;
+}
+
+/* BUTTONS */
+button{
+    padding:10px 14px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.primary{
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    color:white;
+}
+
+.green{
+    background:linear-gradient(135deg,#10b981,#059669);
+    color:white;
+}
+
+.red{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:white;
+}
+
+.gray{
+    background:#334155;
+    color:white;
+}
+
+/* GRID */
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+/* WORK ITEM */
+.item{
+    background:rgba(51,65,85,0.6);
+    padding:14px;
+    border-radius:14px;
+    margin-bottom:12px;
+    border:1px solid rgba(255,255,255,0.05);
+    position:relative;
+}
+
+.title{
+    font-weight:700;
+    font-size:18px;
+    color:#93c5fd;
+}
+
+.small{
+    color:#cbd5e1;
+    font-size:13px;
+    margin-top:6px;
+    line-height:1.5;
+}
+
+/* ACTION BUTTONS */
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+}
+
+.btn{
+    padding:6px 10px;
+    font-size:12px;
+    border-radius:8px;
+}
+
+.edit-btn{
+    background:#f59e0b;
+    color:black;
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+}
+
+.save-btn{
+    background:#22c55e;
+    color:white;
+}
+
+/* DASHBOARD */
+#dash div{
+    padding:8px;
+    margin-bottom:6px;
+    background:rgba(59,130,246,0.1);
+    border-left:3px solid #3b82f6;
+    border-radius:8px;
+}
+
+.edit-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.edit-grid input,
+.edit-grid textarea{
+    background:#0f172a;
+    border:1px solid #334155;
+    padding:8px;
+    border-radius:8px;
+    color:white;
+}
+
+.save-btn{
+    background:#10b981;
+    color:white;
+}
+
+.cancel-btn{
+    background:#ef4444;
+    color:white;
+}
+
+/* ===== CARD ===== */
+.glass-card{
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* TITLE */
+.card-title{
+    margin-bottom:15px;
+    font-size:18px;
+    color:#e2e8f0;
+}
+
+/* GRID */
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+/* INPUT GROUP */
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.input-group.full{
+    grid-column: span 2;
+}
+
+label{
+    font-size:12px;
+    color:#94a3b8;
+}
+
+/* INPUTS */
+input, textarea{
+    background:#0f172a;
+    border:1px solid #334155;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    outline:none;
+    transition:0.2s;
+}
+
+input:focus, textarea:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 2px rgba(59,130,246,0.2);
+}
+
+/* BUTTONS */
+.primary{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.green{
+    background:#10b981;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+/* GLOW EFFECT */
+.glow-btn{
+    transition:0.3s;
+}
+
+.glow-btn:hover{
+    transform: translateY(-2px);
+    box-shadow:0 10px 25px rgba(59,130,246,0.3);
+}
+
+.value-box{
+    background:#0f172a;
+    border:1px solid #334155;
+    padding:10px 12px;
+    border-radius:10px;
+    color:#e2e8f0;
+    font-weight:600;
+    min-height:40px;
+    display:flex;
+    align-items:center;
+    transition:0.2s;
+}
+
+.value-box:hover{
+    border-color:#3b82f6;
+    transform:translateX(3px);
+}
+
+.dashboard-card{
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.dash-header h3{
+    margin:0;
+    font-size:18px;
+    color:#f1f5f9;
+}
+
+.dash-sub{
+    font-size:12px;
+    color:#94a3b8;
+}
+
+.dash-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+
+.dash-item{
+    background:#0f172a;
+    border:1px solid #334155;
+    padding:12px;
+    border-radius:12px;
+    text-align:center;
+    transition:0.2s;
+}
+
+.dash-item:hover{
+    transform:translateY(-3px);
+    border-color:#3b82f6;
+}
+
+.dash-value{
+    font-size:18px;
+    font-weight:700;
+    color:#e2e8f0;
+}
+
+.dash-label{
+    font-size:12px;
+    color:#94a3b8;
+    margin-top:4px;
+}
+
+/* special highlight for profit */
+.dash-profit{
+    background: linear-gradient(135deg, #10b981, #059669);
+    color:white;
+    border:none;
+}
+
+.back-btn{
+    background:#64748b;
+    color:white;
+    padding:10px 14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#475569;
+    transform:translateY(-2px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+   
+
+<h2><i class="fa-solid fa-flask"></i> Lab File</h2>
+
+<div id="labViewMode" class="card glass-card">
+
+ <button onclick="goHome()"
+    style="
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: white;
+        border: none;
+        padding: 10px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+        transition: 0.3s;
+    "
+    onmouseover="this.style.transform='translateY(-2px)'"
+    onmouseout="this.style.transform='translateY(0)'"
+>
+    ← Back to Dashboard
+</button>
+
+    <button class="back-btn" onclick="goToRegister()">
+    ← Back to Register
+</button>
+
+    <h3 class="card-title">🏥 Lab Info</h3>
+
+    <div class="form-grid">
+
+        <div class="input-group">
+            <label>Lab Name</label>
+            <div id="labName" class="value-box">-</div>
+        </div>
+
+        <div class="input-group">
+            <label>Specialization</label>
+            <div id="labSpec" class="value-box">-</div>
+        </div>
+
+        <div class="input-group full">
+            <label>Address</label>
+            <div id="labAddress" class="value-box">-</div>
+        </div>
+
+        <div class="input-group full">
+            <label>Phone</label>
+            <div id="labPhone" class="value-box">-</div>
+        </div>
+
+    </div>
+
+    <button class="primary" onclick="enableEditLab()">
+        ✏️ Edit Lab Info
+    </button>
+
+</div>
+
+<div id="labEditMode" class="card glass-card" style="display:none;">
+
+    <h3 class="card-title">✏️ Edit Lab Info</h3>
+
+    <input id="edit_labName" placeholder="Lab Name">
+    <input id="edit_labSpec" placeholder="Specialization">
+    <input id="edit_labAddress" placeholder="Address">
+    <input id="edit_labPhone" placeholder="Phone">
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+
+        <button class="green" onclick="saveLabEdit()">
+            Save
+        </button>
+
+        <button class="red" onclick="cancelEditLab()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ADD WORK -->
+<div class="card glass-card">
+
+    <h3 class="card-title">➕ Add Work</h3>
+
+    <div class="form-grid">
+
+        <div class="input-group">
+            <label>Doctor</label>
+            <input id="doctorName" placeholder="Doctor Name">
+        </div>
+
+        <div class="input-group">
+            <label>Patient</label>
+            <input id="patientName" placeholder="Patient Name">
+        </div>
+
+        <div class="input-group">
+            <label>اسم التركيبة</label>
+            <input id="workName" placeholder="(crown,bridge,...)">
+        </div>
+
+        <div class="input-group">
+            <label>نوع التركيبة </label>
+            <input id="workType" placeholder="(PFM,zironia,...)">
+        </div>
+
+        <div class="input-group">
+            <label>حساب المعمل</label>
+            <input id="labCost" placeholder="Lab Cost">
+        </div>
+
+        <div class="input-group">
+            <label>التكلفة على المريض</label>
+            <input id="patientAmount" placeholder="Patient Amount">
+        </div>
+
+        <div class="input-group full">
+            <label>Delivery Date وقت التسليم</label>
+            <input id="deliveryDate" type="date">
+        </div>
+
+        <div class="input-group full">
+            <label>Notes (shade , occlusion,...)</label>
+            <textarea id="notes" placeholder="Notes"></textarea>
+        </div>
+
+    </div>
+
+    <button class="green glow-btn" onclick="saveWork()">
+        Save Work
+    </button>
+
+</div>
+<!-- DASHBOARD -->
+<div class="card dashboard-card">
+
+    <div class="dash-header">
+        <h3>📊 Lab Analytics</h3>
+        <span class="dash-sub">Overview of works & revenue</span>
+    </div>
+
+    <div id="dash" class="dash-grid"></div>
+
+</div>
+
+<!-- WORKS LIST -->
+<div class="card">
+
+<h3>Lab Works </h3>
+<h6> auto deleted after 6 monthes تحذف التركيبات الاقدم من ستة اشهر تلقائيا</h6>
+
+<div id="worksContainer"></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="lab_file.js"></script>
+
+</body>
+</html>

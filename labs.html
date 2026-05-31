@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Labs Management</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    padding:20px;
+}
+
+.page-title{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#334155;
+    color:white;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+.btn{
+    margin-top:15px;
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.primary{
+    background:#3b82f6;
+    color:white;
+}
+
+.doctor-card{
+    background:#1e293b;
+    padding:18px;
+    border-radius:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.doctor-name{
+    font-size:18px;
+    font-weight:700;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.open-btn{
+    background:#10b981;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.card h3{
+    margin-bottom:15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#f8fafc;
+}
+
+#labsContainer{
+    margin-top:10px;
+}
+
+.doctor-card{
+    background:#334155;
+    padding:18px;
+    border-radius:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.doctor-card:hover{
+    transform:translateY(-2px);
+    background:#3b4b63;
+}
+
+.back-btn{
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.back-btn:hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(6, 182, 212, 0.35);
+}
+
+/* Glow animation */
+.back-btn::before{
+    content: "";
+    position: absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.3),
+        transparent
+    );
+    transition:0.5s;
+}
+
+.back-btn:hover::before{
+    left:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1 class="page-title">
+    <i class="fa-solid fa-flask"></i>
+    Labs Management
+</h1>
+
+<div class="card">
+
+    <h3>Add New Lab</h3>
+
+    <input
+        id="labName"
+        placeholder="Lab Name">
+
+    <input
+        id="specialization"
+        placeholder="Specialization">
+
+    <input
+        id="address"
+        placeholder="Address">
+
+    <input
+        id="phone"
+        placeholder="Phone Number">
+
+    <button
+        onclick="saveLab()"
+        class="btn primary">
+
+        Save Lab
+
+    </button>
+
+</div>
+<div class="card">
+    <button class="back-btn" onclick="goToDashboard()">
+    ← Back to Dashboard
+</button>
+</div>
+
+
+<!-- LABS LIST -->
+
+<div class="card">
+
+    <h3>
+        <i class="fa-solid fa-list"></i>
+        Labs List
+    </h3>
+
+    <div id="labsContainer"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="labs.js"></script>
+
+</body>
+</html>

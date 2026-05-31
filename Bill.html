@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bills Management</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Segoe UI;
+    background:#0f172a;
+    color:white;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:0;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+    box-sizing:border-box;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    color:white;
+    font-weight:bold;
+    background:linear-gradient(135deg,#10b981,#06b6d4);
+}
+
+.back-btn{
+    background:linear-gradient(135deg,#6366f1,#06b6d4);
+    color:white;
+    padding:10px 14px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.bill-item{
+    background:#334155;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:10px;
+}
+
+.bill-title{
+    font-size:18px;
+    font-weight:700;
+}
+
+.bill-date{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.delete-btn{
+    margin-top:10px;
+    background:#ef4444;
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+}
+
+.amount{
+    color:#10b981;
+    font-weight:700;
+    margin-top:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="back-btn"
+onclick="goDashboard()">
+← Dashboard
+</button>
+
+<div class="card">
+
+    <h2>
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        Add Bill
+    </h2>
+
+    <input
+        id="beneficiary"
+        placeholder="Beneficiary">
+
+    <input
+        id="reason"
+        placeholder="Reason">
+
+    <input
+        id="amount"
+        type="number"
+        placeholder="Amount">
+
+    <button
+        class="save-btn"
+        onclick="saveBill()">
+
+        Save Bill
+
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h2>
+        <i class="fa-solid fa-list"></i>
+        Bills List
+    </h2>
+<h6>auto deleted after 6 monthes  تختفي الفواتير تلقائيا بعد ستة اشهر</h6>
+    <div id="billsContainer"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+
+<script src="Bill.js"></script>
+
+</body>
+</html>
